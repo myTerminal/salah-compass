@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const fs = require('fs');
-const http = require('http');
+const https = require('https');
 const { exec } = require('child_process');
 
 const [vLat, vLong] = fs
@@ -10,12 +10,12 @@ const [vLat, vLong] = fs
       .trim()
       .split(',');
 const today = new Date();
-const url=`http://api.aladhan.com/v1/timings/${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}?latitude=${vLat}&longitude=${vLong}&method=2&school=1`;
+const url=`https://api.aladhan.com/v1/timings/${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}?latitude=${vLat}&longitude=${vLong}&method=2&school=1`;
 const playScriptPath = '/usr/local/bin/daily-prayers-play-adhan';
 const adhanPathFajr = '/opt/daily-prayers/adhans/Adhan-0_Mansur-Al-Zahrane.mp3';
 const adhanPathRegular = '/opt/daily-prayers/adhans/Adhan-1_Nasser-Al-Qatami_-_Al-Riad-Al-Saoudea.mp3';
 
-http
+https
     .get(
         url,
         response => {
