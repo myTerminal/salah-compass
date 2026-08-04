@@ -7,4 +7,4 @@ d_long=39.82624
 echo -e "Please enter the longitude of your location (ex: ${d_long}):"
 read -p "> " v_long
 
-echo "${v_lat:-$d_lat},${v_long:-$d_long}" | sudo tee /opt/salah-compass/coordinates
+echo "${v_lat:-$d_lat},${v_long:-$d_long}" | sudo tee /var/lib/salah-compass/coordinates

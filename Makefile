@@ -1,5 +1,6 @@
 SHELL = /bin/sh
 OPT_DIR = /opt
+LIB_DIR = /var/lib
 
 ifeq ($(PREFIX),)
 	PREFIX := /usr/local
@@ -62,10 +63,11 @@ place:
 	sudo install ./scripts/* $(PREFIX)/bin/
 	sudo mkdir -p $(OPT_DIR)/salah-compass/adhans
 	sudo cp -R ./adhans/* $(OPT_DIR)/salah-compass/adhans
+	sudo mkdir -p $(LIB_DIR)/salah-compass
 	@echo "commands installed."
 
 configure:
-	@if test -f "$(OPT_DIR)/salah-compass/coordinates"; then \
+	@if test -f "$(LIB_DIR)/salah-compass/coordinates"; then \
 		echo "Configuration exists!"; \
 	else \
 		echo "Configuring..."; \
@@ -82,6 +84,7 @@ uninstall:
 	@echo "Uninstalling salah-compass..."
 	sudo rm $(PREFIX)/bin/salah-compass*
 	sudo rm -rf $(OPT_DIR)/salah-compass
+	sudo rm -rf $(LIB_DIR)/salah-compass
 	sudo crontab -u $$USER -r
 	@echo "salah-compass has been uninstalled."
 

@@ -5,7 +5,7 @@ const https = require('https');
 const { exec } = require('child_process');
 
 const [vLat, vLong] = fs
-      .readFileSync('/opt/salah-compass/coordinates')
+      .readFileSync('/var/lib/salah-compass/coordinates')
       .toString()
       .trim()
       .split(',');
