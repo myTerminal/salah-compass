@@ -7,10 +7,10 @@ endif
 
 help:
 	@echo "Use one of the following options:"
-	@echo "install - Installs daily-prayers"
-	@echo "uninstall - Uninstalls daily-prayers"
-	@echo "reinstall - Reinstalls daily-prayers"
-	@echo "update - Updates daily-prayers"
+	@echo "install - Installs salah-compass"
+	@echo "uninstall - Uninstalls salah-compass"
+	@echo "reinstall - Reinstalls salah-compass"
+	@echo "update - Updates salah-compass"
 
 crater-get:
 	@echo "Setting up Crater for temporary use..."
@@ -60,30 +60,30 @@ req: crater-get primary-deps crater-remove
 place:
 	@echo "Installing commands..."
 	sudo install ./scripts/* $(PREFIX)/bin/
-	sudo mkdir -p $(OPT_DIR)/daily-prayers/adhans
-	sudo cp -R ./adhans/* $(OPT_DIR)/daily-prayers/adhans
+	sudo mkdir -p $(OPT_DIR)/salah-compass/adhans
+	sudo cp -R ./adhans/* $(OPT_DIR)/salah-compass/adhans
 	@echo "commands installed."
 
 configure:
-	@if test -f "$(OPT_DIR)/daily-prayers/coordinates"; then \
+	@if test -f "$(OPT_DIR)/salah-compass/coordinates"; then \
 		echo "Configuration exists!"; \
 	else \
 		echo "Configuring..."; \
-		./scripts/daily-prayers-configure; \
+		./scripts/salah-compass-configure; \
 	fi
 
 init:
-	./scripts/daily-prayers-schedule-tasks
+	./scripts/salah-compass-schedule-tasks
 
 install: req place configure init
-	@echo "daily-prayers is now installed."
+	@echo "salah-compass is now installed."
 
 uninstall:
-	@echo "Uninstalling daily-prayers..."
-	sudo rm $(PREFIX)/bin/daily-prayers*
-	sudo rm -rf $(OPT_DIR)/daily-prayers
+	@echo "Uninstalling salah-compass..."
+	sudo rm $(PREFIX)/bin/salah-compass*
+	sudo rm -rf $(OPT_DIR)/salah-compass
 	sudo crontab -u $$USER -r
-	@echo "daily-prayers has been uninstalled."
+	@echo "salah-compass has been uninstalled."
 
 reinstall: uninstall install
 

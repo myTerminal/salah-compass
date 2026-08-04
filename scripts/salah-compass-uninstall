@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
 git clone https://github.com/myTerminal/salah-compass /tmp/salah-compass
-(cd /tmp/salah-compass; make install)
+(cd /tmp/salah-compass; make uninstall)
 rm -rf /tmp/salah-compass

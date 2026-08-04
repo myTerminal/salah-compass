@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-git clone https://github.com/myTerminal/daily-prayers /tmp/daily-prayers
-(cd /tmp/daily-prayers; make reinstall)
-rm -rf /tmp/daily-prayers

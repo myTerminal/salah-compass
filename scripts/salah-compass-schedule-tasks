@@ -5,15 +5,15 @@ const https = require('https');
 const { exec } = require('child_process');
 
 const [vLat, vLong] = fs
-      .readFileSync('/opt/daily-prayers/coordinates')
+      .readFileSync('/opt/salah-compass/coordinates')
       .toString()
       .trim()
       .split(',');
 const today = new Date();
 const url=`https://api.aladhan.com/v1/timings/${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}?latitude=${vLat}&longitude=${vLong}&method=2&school=1`;
-const playScriptPath = '/usr/local/bin/daily-prayers-play-adhan';
-const adhanPathFajr = '/opt/daily-prayers/adhans/Adhan-0_Mansur-Al-Zahrane.mp3';
-const adhanPathRegular = '/opt/daily-prayers/adhans/Adhan-1_Nasser-Al-Qatami_-_Al-Riad-Al-Saoudea.mp3';
+const playScriptPath = '/usr/local/bin/salah-compass-play-adhan';
+const adhanPathFajr = '/opt/salah-compass/adhans/Adhan-0_Mansur-Al-Zahrane.mp3';
+const adhanPathRegular = '/opt/salah-compass/adhans/Adhan-1_Nasser-Al-Qatami_-_Al-Riad-Al-Saoudea.mp3';
 
 https
     .get(
@@ -37,8 +37,8 @@ https
                         const { data: { timings: { Fajr, Dhuhr, Asr, Maghrib, Isha } } } = jsonData;
 
                         const cronString = [
-                            '0 0 * * * /usr/local/bin/daily-prayers-schedule-tasks',
-                            '0 9 * * 0 /usr/local/bin/daily-prayers-reboot',
+                            '0 0 * * * /usr/local/bin/salah-compass-schedule-tasks',
+                            '0 9 * * 0 /usr/local/bin/salah-compass-reboot',
                             `${Fajr.split(':').reverse().join(' ')} * * * ${playScriptPath} ${adhanPathFajr}`,
                             `${Dhuhr.split(':').reverse().join(' ')} * * * ${playScriptPath} ${adhanPathRegular}`,
                             `${Asr.split(':').reverse().join(' ')} * * * ${playScriptPath} ${adhanPathRegular}`,
