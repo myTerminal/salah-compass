@@ -43,7 +43,7 @@ else
 	/tmp/crater-cli/crater install pipewire
 endif
 	@echo "Making sure dbus is installed..."
-ifneq ($(shell command -v dbus),)
+ifneq ($(shell command -v dbus-run-session),)
 	@echo "dbus found."
 else
 	@echo "dbus not found!"
