@@ -21,6 +21,7 @@ You can run this on any hardware that can run Linux or other UNIX-like systems.
  - [mpv](https://mpv.io)
  - [PipeWire](https://pipewire.org)
  - [dbus](https://www.freedesktop.org/wiki/Software/dbus)
+ - [caddy](https://caddyserver.com)
 
 ## Installation
 

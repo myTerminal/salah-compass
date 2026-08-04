@@ -50,6 +50,14 @@ else
 	@echo "Attempting to install dbus using Crater..."
 	/tmp/crater-cli/crater install dbus
 endif
+	@echo "Making sure caddy is installed..."
+ifneq ($(shell command -v caddy),)
+	@echo "caddy found."
+else
+	@echo "caddy not found!"
+	@echo "Attempting to install caddy using Crater..."
+	/tmp/crater-cli/crater install caddy
+endif
 	@echo "All required dependencies found."
 
 crater-remove:
