@@ -47,7 +47,7 @@ https
                         ].join('\n');
 
                         fs.writeFileSync(
-                            '/var/lib/salah-compass/timings',
+                            '/opt/salah-compass/dashboard/timings.json',
                             JSON.stringify(jsonData.data)
                         );
 

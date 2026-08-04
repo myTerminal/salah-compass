@@ -61,11 +61,15 @@ req: crater-get primary-deps crater-remove
 place:
 	@echo "Installing commands..."
 	sudo install ./scripts/* $(PREFIX)/bin/
-	sudo mkdir -p $(OPT_DIR)/salah-compass/adhans
-	sudo cp -R ./adhans/* $(OPT_DIR)/salah-compass/adhans
+	sudo mkdir -p $(OPT_DIR)/salah-compass
+	sudo chmod -R 755 $(OPT_DIR)/salah-compass
+	sudo chown -R $$USER:$$USER $(OPT_DIR)/salah-compass
+	mkdir -p $(OPT_DIR)/salah-compass/adhans
+	cp -R ./adhans/* $(OPT_DIR)/salah-compass/adhans
+	cp -R ./dashboard/web $(OPT_DIR)/salah-compass/dashboard
 	sudo mkdir -p $(LIB_DIR)/salah-compass
 	sudo chmod -R 755 $(LIB_DIR)/salah-compass
-	sudo chown $$USER:$$USER $(LIB_DIR)/salah-compass
+	sudo chown -R $$USER:$$USER $(LIB_DIR)/salah-compass
 	@echo "commands installed."
 
 configure:
