@@ -64,6 +64,8 @@ place:
 	sudo mkdir -p $(OPT_DIR)/salah-compass/adhans
 	sudo cp -R ./adhans/* $(OPT_DIR)/salah-compass/adhans
 	sudo mkdir -p $(LIB_DIR)/salah-compass
+	sudo chmod -R 755 $(LIB_DIR)/salah-compass
+	sudo chown $$USER:$$USER $(LIB_DIR)/salah-compass
 	@echo "commands installed."
 
 configure:

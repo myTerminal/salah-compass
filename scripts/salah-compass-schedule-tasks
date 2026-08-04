@@ -46,6 +46,11 @@ https
                             `${Isha.split(':').reverse().join(' ')} * * * ${playScriptPath} ${adhanPathRegular}`,
                         ].join('\n');
 
+                        fs.writeFileSync(
+                            '/var/lib/salah-compass/timings',
+                            JSON.stringify(jsonData.data)
+                        );
+
                         exec(
                             `echo "${cronString}" | crontab -`,
                             (error, stdout, stderr) => {
