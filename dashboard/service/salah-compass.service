@@ -1,0 +1,13 @@
+[Unit]
+Description=salah-compass service
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=root
+ExecStart=/usr/bin/env caddy file-server --listen :8080 --root /opt/salah-compass/dashboard/ 1>/dev/null
+
+[Install]
+WantedBy=multi-user.target

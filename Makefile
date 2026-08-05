@@ -91,7 +91,24 @@ configure:
 init:
 	./scripts/salah-compass-schedule-tasks
 
-install: req place configure init
+service:
+	@echo "Looking for a known init system..."
+ifneq ($(shell command -v runit),)
+	@echo "'Runit' found. Attempting to create a service..."
+	sudo cp -R ./dashboard/service/salah-compass-runit /etc/sv/salah-compass
+	sudo ln -s /etc/sv/salah-compass /var/service
+	@echo "Runit service created and started."
+else ifneq ($(shell command -v systemctl),)
+	@echo "'SystemD' found. Attempting to create a service..."
+	sudo cp ./dashboard/service/salah-compass.service /etc/systemd/system/
+	systemctl enable salah-compass.service
+	systemctl start salah-compass.service
+	@echo "SystemD service created and started."
+else
+	@echo "No known init system found."
+endif
+
+install: req place configure init service
 	@echo "salah-compass is now installed."
 
 uninstall:
@@ -100,6 +117,14 @@ uninstall:
 	sudo rm -rf $(OPT_DIR)/salah-compass
 	sudo rm -rf $(LIB_DIR)/salah-compass
 	sudo crontab -u $$USER -r
+ifneq ($(shell command -v runit),)
+	sudo rm -rf /var/service/salah-compass
+	sudo rm -rf /etc/sv/salah-compass
+else ifneq ($(shell command -v systemctl),)
+	systemctl stop salah-compass.service
+	systemctl disable salah-compass.service
+	sudo rm -rf /etc/systemd/system/salah-compass.service
+endif
 	@echo "salah-compass has been uninstalled."
 
 reinstall: uninstall install

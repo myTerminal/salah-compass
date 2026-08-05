@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec  caddy file-server --listen :8080 --root /opt/salah-compass/dashboard/ 1>/dev/null
