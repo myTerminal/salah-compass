@@ -23,7 +23,7 @@ const getElapsedMinutes = () => {
 
 const updatePointer = markers => {
     const elapsedMinutes = getElapsedMinutes();
-    const elapsedPercentage = elapsedMinutes / 14.00;
+    const elapsedPercentage = elapsedMinutes / 14.40;
 
     document.getElementById('pointer').style.height = `${elapsedPercentage}%`;
 
