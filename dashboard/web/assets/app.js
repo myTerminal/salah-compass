@@ -30,7 +30,7 @@ const updatePointer = markers => {
             const markerElement = document.querySelector(`[data-event=${label}]`);
 
             if (elapsedPercentage > mark) {
-                document.querySelector('.marker.current').classList.remove('current');
+                document.querySelector('.marker.current')?.classList.remove('current');
                 markerElement.classLst.add('past');
                 markerElement.classLst.add('current');
             } else {
