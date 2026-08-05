@@ -3,9 +3,9 @@
 [![License](https://img.shields.io/github/license/myTerminal/salah-compass.svg)](https://opensource.org/licenses/MIT)  
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y5E5GL7)
 
-An automated prayer call alarm system for UNIX-like systems
+An automated prayer call alarm system and dashboard for UNIX-like systems
 
-> Note: This is an alpha-quality software and is expected to change with time. In its current state, the implementation works on my test hardware and software. As I expand support on a wider combination of systems, please feel free to contribute to make it more usable.
+> Note: This is an alpha-quality software and is expected to change with time. In its current state, the implementation works on my test hardware and software. As I expand support on a wider combination of systems, your contributions to help me make it useful for more people will be highly appreciated.
 
 ## Requirements
 
@@ -52,10 +52,11 @@ Simply execute the below command in a terminal; the rest should be automatic.
 
 Once installed, *salah-compass* works automatically:
 
-1. It fetches the prayer timings for the day once at the start of the day and sets prayer call reminders.
+1. It fetches the prayer timings for the day once at the start of the day and sets prayer call reminders as cron jobs.
 2. At the prayer times according to its knowledge, it plays an audio version of the appropriate Adhan for the time.
+3. A live, web-based dashboard showing the map of the entire day covering all five obligatory prayers (and more) is made available on port 7086.
 
-The following parameters have been hard-coded for the time being and will be made configurable soon:
+The following parameters have been hard-coded for the time being and will be made configurable if needed:
 
 1. **Prayer time calculation method** has been set to "Islamic Society of North America"
 2. **School** has been set to "Hanafi"
@@ -95,5 +96,4 @@ In order to uninstall *salah-compass*, simply run:
 ## To-Do
 
 - Remove dependency on `pipewire` and `dbus`
-- Implement an Adhan dashboard
 - Allow configuration beyond the location
