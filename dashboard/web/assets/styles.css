@@ -31,7 +31,6 @@ body {
     height: 1px;
     color: #000;
     background-image: linear-gradient(to right, #000, transparent);
-    opacity: 0.5;
 }
 
 .marker.prayer {
@@ -42,15 +41,15 @@ body {
 
 .marker.prayer span {
     font-size: 1.2em;
+    color: #8dff00;
+    text-shadow: 0 0 2em #000;
 }
 
 .marker.prayer.past {
-    color: #F00;
     opacity: 0.5;
 }
 
 .marker.prayer.current {
-    color: #00ff00;
     font-weight: bold;
     text-shadow: 0 0 1em #000;
 }
@@ -69,15 +68,22 @@ body {
     width: 100%;
     top: 0;
     background-color: green;
-    opacity: 0.5;
+    box-shadow: 0px 0px 15px 0px #000;
+    opacity: 0.7;
 }
 
 #pointer #time-now {
     position: absolute;
     bottom: 0;
+    margin-left: 0.25em;
     width: 100%;
     text-align: left;
     font-size: 2em;
     font-weight: bold;
+    text-shadow: 0 0 1em #000;
+}
+
+#pointer #time-now span {
+    font-size: 0.5em;
     text-shadow: 0 0 1em #000;
 }

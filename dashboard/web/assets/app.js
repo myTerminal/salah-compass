@@ -21,7 +21,7 @@ const getElapsedMinutes = () => {
     return Math.floor(elapsedMinutes);
 };
 
-const updatePointer = markers => {
+const updatePointer = (markers, date) => {
     const elapsedMinutes = getElapsedMinutes();
     const elapsedPercentage = elapsedMinutes / 14.40;
 
@@ -43,19 +43,23 @@ const updatePointer = markers => {
 
     const timeNowElement = document.getElementById('time-now');
 
-    timeNowElement.innerHTML = new Date().toLocaleTimeString(
-        'en-US', {
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: true
-        }
-    );
+    timeNowElement.innerHTML =
+        new Date().toLocaleTimeString(
+            'en-US', {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true
+            }
+        )
+        + `&nbsp;<span>${date.hijri.day} ${date.hijri.month.en} ${date.hijri.year}</span>`;
 };
 
 const useData = data => {
-    const timings = data.timings;
+    const now = data;
+    const timings = now.timings;
+    const date = now.date;
 
-    console.log(timings);
+    console.log(now);
 
     const markers = [
         ['Midnight', 'event', calculateMinutes(timings['Midnight']) / 14.40, timings['Midnight']],
@@ -72,9 +76,9 @@ const useData = data => {
 
     markers.forEach(m => { mountMarker(m); });
 
-    updatePointer(markers);
+    updatePointer(markers, date);
     window.setInterval(
-        () => { updatePointer(markers); },
+        () => { updatePointer(markers, date); },
         60 * 1000
     );
 };
